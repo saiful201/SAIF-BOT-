@@ -3,7 +3,7 @@ module.exports.config = {
   name: "MISS YOU",
     version: "2.1.1",
   hasPermssion: 0,
-  credits: "PREM BABU", 
+  credits: "SAURABH BABU", 
   description: "THIS BOT WAS MADE BY MR SAURABH BABU",
   commandCategory: "NO PREFIX",
     cooldowns: 5, 

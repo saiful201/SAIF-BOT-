@@ -2,7 +2,7 @@ module.exports.config = {
   name: "ADMIN",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "PREM-BABU",
+  credits: "SAURABH-BABU",
   description: "THIS BOT WAS MADE BY MR SAURABH THAKUR",
   commandCategory: "ADMIN MENTION",
   usages: "",

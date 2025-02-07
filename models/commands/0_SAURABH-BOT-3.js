@@ -1,15 +1,12 @@
-//@Prem-babu3608
-////////////////////////////////////////////////////////
-/////// WARNING => JO CREDIT NAME CHANGE KREGA USKA ID BAN KAR DIYA JAYEGA + THIS BOT IS MADE BT PREM BABU
 const fs = global.nodemodule["fs-extra"];
 module.exports.config = {
-  name: "PREM-BOT-3",
+  name: "SAURABH-BOT-3",
   version: "1.0.1",
   hasPermssion: 0,
-  credits: "PREM BABU",
-  description: "SAYERI REPLY MR PREM BABU",
+  credits: "SAURABH BABU",
+  description: "SAYERI REPLY MR SAURABH BABU",
   commandCategory: "NO PREFIX",
-  usages: "PREM-OR-TAKLA",
+  usages: "SAURABH-OR-TAKLA",
   cooldowns: 5,
 }
 module.exports.handleEvent = async function({ api, event, args, Threads, Users }) {
@@ -29,7 +26,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
   ////////////////@prem-babu3608/////////////////
    mess = "{name}"
   
-  if (event.body.includes("Nobita") == 1 || (event.body.includes("Nobi") == 1)) {
+  if (event.body.includes("🤔") == 1 || (event.body.includes("😒") == 1)) {
     var msg = {
       body: `🐥 ${name} 🐥\n\n 👉${rand} \n\n   ❁ ══════ ❃ NOBITA DON  ❃ ══════ ❁`
     }

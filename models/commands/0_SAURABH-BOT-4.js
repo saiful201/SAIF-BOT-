@@ -1,9 +1,9 @@
 module.exports.config = {
-  name: "PREM-BOT-4",
+  name: "SAURABH-BOT-4",
   version: "1.0.1",
   hasPermission: 0,
-  credits: "PREM BABU",
-  description: "THIS BOT IS MADE BY PREM BABU",
+  credits: "SAURABH BABU",
+  description: "THIS BOT IS MADE BY SAURABH BABU",
   commandCategory: "TYPING BOT",
   usages: "BOT",
   cooldowns: 5,
@@ -46,8 +46,8 @@ module.exports.handleEvent = async function ({ api, event, Users }) {
     yan.includes("lol") ||
     yan.includes("yahoo") ||
     yan.includes("yahuu") ||
-    yan.includes("agoy") ||
-    yan.includes("aguy") ||
+    yan.includes("😂😂😂") ||
+    yan.includes("🙂❤️") ||
     yan.includes("😄") ||
     yan.includes("🤣") ||
     yan.includes("😆") ||
@@ -59,7 +59,7 @@ module.exports.handleEvent = async function ({ api, event, Users }) {
   } 
 
   if (
-    yan.includes("kawawa") ||
+    yan.includes("😊") ||
     yan.includes("sad") ||
     yan.includes("agoi") ||
     yan.includes("sakit") ||

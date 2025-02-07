@@ -1,9 +1,9 @@
 module.exports.config = {
-  name: "PREM-HELLO-HY",
+  name: "SAURABH-HELLO-HY",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "PREM BABU",
-  description: "THIS BOT IS MADE BY PREM BABU",
+  credits: "SAURABH BABU",
+  description: "THIS BOT IS MADE BY SAURABH BABU",
   commandCategory: "HELLO HY",
   usages: "HY HELLO HI",
   cooldowns: 5

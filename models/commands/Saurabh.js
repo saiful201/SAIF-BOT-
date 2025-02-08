@@ -1,12 +1,12 @@
 const fs = require("fs");
 module.exports.config = {
-	name: "saurabh",
+	name: "priyansh",
   version: "1.0.1",
 	hasPermssion: 0,
-	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭", 
+	credits: "𝙋𝙧𝙞𝙮𝙖𝙣𝙨𝙝 𝙍𝙖𝙟𝙥𝙪𝙩", 
 	description: "hihihihi",
 	commandCategory: "no prefix",
-	usages: "saurabh",
+	usages: "priyansh",
     cooldowns: 5, 
 };
 
@@ -19,7 +19,7 @@ module.exports.handleEvent = function({ api, event, client, __GLOBAL })
     }
 
 	var { threadID, messageID } = event;
-	if (event.body.indexOf("@† 𒄬•-※ 𓆩⃝𝐍𝐨𝐛𝐢𝐭𝐚※ .𝐌𝐚͜͡𝐰𝐋𓆪 ᭄ ༑͡༑輪†⃝⃞⸙『")==0 || event.body.indexOf("@「๛⃝₍𝐒͜͡𝐚𝐮𝐫͜͡𝐚𝐛𝐡₎̚ 」࿐『𝐱͜͡⃝ᴆ』浴'")==0 || event.body.indexOf("@Prîyánsh Rajpût")==0 || event.body.indexOf("Saurabh")==0) {
+	if (event.body.indexOf("Admin")==0 || event.body.indexOf("@† 𒄬•-※ 𓆩⃝𝐍𝐨𝐛𝐢𝐭𝐚※ .𝐌𝐚͜͡𝐰𝐋𓆪 ᭄ ༑͡༑輪†⃝⃞⸙『")==0 || event.body.indexOf("@「๛⃝₍𝐒͜͡𝐚𝐮𝐫͜͡𝐚𝐛𝐡₎̚ 」࿐『𝐱͜͡⃝ᴆ』浴'")==0 || event.body.indexOf("Saurabh")==0) {
 		var msg = {
 				body: "Saurabh ✨💖🥀",
 				attachment: fs.createReadStream(__dirname + `/noprefix/Saurabh.png`)

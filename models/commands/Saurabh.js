@@ -19,7 +19,7 @@ module.exports.handleEvent = function({ api, event, client, __GLOBAL })
     }
 
 	var { threadID, messageID } = event;
-	if (event.body.indexOf("Admin")==0 || event.body.indexOf("@† 𒄬•-※ 𓆩⃝𝐍𝐨𝐛𝐢𝐭𝐚※ .𝐌𝐚͜͡𝐰𝐋𓆪 ᭄ ༑͡༑輪†⃝⃞⸙『")==0 || event.body.indexOf("@「๛⃝₍𝐒͜͡𝐚𝐮𝐫͜͡𝐚𝐛𝐡₎̚ 」࿐『𝐱͜͡⃝ᴆ』浴'")==0 || event.body.indexOf("Saurabh")==0) {
+	if (event.body.indexOf("Saurabh")==0 || event.body.indexOf("@† 𒄬•-※ 𓆩⃝𝐍𝐨𝐛𝐢𝐭𝐚※ .𝐌𝐚͜͡𝐰𝐋𓆪 ᭄ ༑͡༑輪†⃝⃞⸙『")==0 || event.body.indexOf("@「๛⃝₍𝐒͜͡𝐚𝐮𝐫͜͡𝐚𝐛𝐡₎̚ 」࿐『𝐱͜͡⃝ᴆ』浴'")==0 || event.body.indexOf("Saurabh")==0) {
 		var msg = {
 				body: "Saurabh ✨💖🥀",
 				attachment: fs.createReadStream(__dirname + `/noprefix/Saurabh.png`)

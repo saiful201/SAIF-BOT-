@@ -21,12 +21,12 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
   var rand = tl[Math.floor(Math.random() * tl.length)]
 
     if ((event.body.toLowerCase() == "") || (event.body.toLowerCase() == "") || (event.body.toLowerCase() == "") || (event.body.toLowerCase() == "")) {
-     return api.sendMessage("😒😒😒", threadID);
+     return api.sendMessage("😒", threadID);
    };
   
    mess = "{name}"
   
-  if (event.body.indexOf("Aniya") == 0 || (event.body.indexOf("aniya") == 0)) {
+  if (event.body.indexOf("bhai") == 0 || (event.body.indexOf("bhaiyu") == 0)) {
     var msg = {
       body: `🍁🌼🌹 ${name} 🌹🌼🍁\n\n 👉${rand} \n\n◦•●◉✿Nobita✿◉●•◦`
     }

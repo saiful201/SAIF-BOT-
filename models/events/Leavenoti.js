@@ -18,7 +18,7 @@ module.exports.run = async function({ api, event, Users, Threads }) {
 	const data = global.data.threadData.get(parseInt(threadID)) || (await Threads.getData(threadID)).data;
 	const name = global.data.userName.get(event.logMessageData.leftParticipantFbId) || await Users.getNameUser(event.logMessageData.leftParticipantFbId);
 	const type = (event.author == event.logMessageData.leftParticipantFbId) ? "এর BFf official এ থাকার যোগ্যতা নেই তাই Leave নিছে। Leave না নিলে ওরে আমি নিজেই লাত্থি দিতাম।" : "এর BFf official এ থাকার যোগ্যতা নেই তাই Leave নিছে। Leave না নিলে ওরে আমি নিজেই লাত্থি দিতাম।";
-	const path = join(__dirname, "cache", "leavemp4");
+	const path = join(__dirname, "cache", "");
 	const gifPath = join(path, `350.mp4`);
 	var msg, formPush
 

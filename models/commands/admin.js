@@ -1,9 +1,10 @@
+
 module.exports.config = {
 	name: "admin",
 	version: "1.0.1", 
 	hasPermssion: 0,
-	credits: "Mohammad rahad",
-	description: "Admin info",
+	credits: "Joshua Sy", //don't change the credits please
+	description: "Admin info.",
 	commandCategory: "...",
 	cooldowns: 1,
 	dependencies: 

@@ -2,7 +2,7 @@ module.exports.config = {
  name: "antiout",
  eventType: ["log:unsubscribe"],
  version: "0.0.1",
- credits: "𝐒𝐚𝐮𝐫𝐚𝐛𝐡 𝐓𝐡𝐚𝐤𝐮𝐫",
+ credits: "DungUwU",
  description: "Listen events"
 };
 
@@ -11,12 +11,12 @@ module.exports.run = async({ event, api, Threads, Users }) => {
  if (data.antiout == false) return;
  if (event.logMessageData.leftParticipantFbId == api.getCurrentUserID()) return;
  const name = global.data.userName.get(event.logMessageData.leftParticipantFbId) || await Users.getNameUser(event.logMessageData.leftParticipantFbId);
- const type = (event.author == event.logMessageData.leftParticipantFbId) ? "self-separation" : "Koi Ase Pichware Mai Lath Marta Hai?";
+ const type = (event.author == event.logMessageData.leftParticipantFbId) ? "self-separation" : "being kicked by the administrator";
  if (type == "self-separation") {
   api.addUserToGroup(event.logMessageData.leftParticipantFbId, event.threadID, (error, info) => {
    if (error) {
-    api.sendMessage(`Isse Dubara Add Nhi Kar Paya 🥺 ${name} Group Mai :( `, event.threadID)
-   } else api.sendMessage(`Bhag Ke Jaane Ka Nhi, ${name} Baby, Dekho Phir Se Add Kardiya Aapko`, event.threadID);
+    api.sendMessage(`কিরে😂 ${name} তোর এতো বড়ো সাহস😈 আমি বিলাই বট থাকতে লিভ নেস😂 :( `, event.threadID)
+   } else api.sendMessage(`কিরে😈 ${name} কোথায় পালাস আমি বিলাই বট থাকতে পালাতে পারবি না🤣😂`, event.threadID);
   })
  }
-}
+                            }

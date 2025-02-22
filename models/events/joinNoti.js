@@ -48,10 +48,10 @@ memLength.sort((a, b) => a - b);
 			.replace(/\{threadName}/g, threadName);			
 
       var link = [
-"https://imgur.com/a/BFWmo8C",
-"https://imgur.com/a/BFWmo8C",
-"https://imgur.com/a/BFWmo8C",
-"https://imgur.com/a/BFWmo8C",
+"https://i.imgur.com/IzCympC.png",
+"https://i.imgur.com/IzCympC.png",
+"https://i.imgur.com/IzCympC.png",
+"https://i.imgur.com/IzCympC.png",
       ];
 				var callback = () => api.sendMessage({ body: msg, attachment: fs.createReadStream(__dirname + "/cache/leiamnashJ.jpg"), mentions }, event.threadID, () => fs.unlinkSync(__dirname + "/cache/leiamnashJ.jpg"));
     return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname + "/cache/leiamnashJ.jpg")).on("close", () => callback());       

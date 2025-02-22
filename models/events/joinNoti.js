@@ -40,7 +40,7 @@ api.getUserInfo(parseInt(userID), (err, data) => {
 				memLength.push(participantIDs.length - i++);
 memLength.sort((a, b) => a - b);
 
-			(typeof threadData.customJoin == "undefined") ? msg = "💐 WELCOME\n{uName}\nআপনাকে আমাদের BFF OFFICIAL  Group এ Join হওয়ার জন্য ধন্যবাদ। আপনি আমাদের GROUP এর\n {soThanhVien} Number member আসা করি আপনি আমাদের সকল রুলস মেনে চলবেন।🖤💐\n[𝑮𝑹𝑶𝑼𝑷 𝑹𝑼𝑳𝑬𝑺]\n১. গ্ৰুপে কেউ ১৮+ কিছু দিবেন না।\n২. আমাদের গ্ৰুপে অনেক Senior ভাই ও আপু আছে, সবাইকে সম্মান দিবেন।\n৩. অযথা BOT Command দিয়ে বিরক্ত করবেন না।\n𝙳𝚎𝚜𝚒𝚐𝚗𝚎𝚍 𝙱𝚢; Anamul Huq" : msg = threadData.customJoin;
+			(typeof threadData.customJoin == "undefined") ? msg = "💐 WELCOME\n{uName}\nআপনাকে আমাদের 𝔸𝕕𝕕𝕒 𝔾𝕙𝕠𝕣  Group এ Join হওয়ার জন্য ধন্যবাদ। আপনি আমাদের GROUP এর\n {soThanhVien} Number member আসা করি আপনি আমাদের সকল রুলস মেনে চলবেন।🖤💐\n[𝑮𝑹𝑶𝑼𝑷 𝑹𝑼𝑳𝑬𝑺]\n১. গ্ৰুপে কেউ ১৮+ কিছু দিবেন না।\n২. আমাদের গ্ৰুপে অনেক Senior ভাই ও আপু আছে, সবাইকে সম্মান দিবেন।\n৩. অযথা BOT Command দিয়ে বিরক্ত করবেন না।\n𝙳𝚎𝚜𝚒𝚐𝚗𝚎𝚍 𝙱𝚢; 𝖲𝖺𝗂𝖿𝗎𝗅 𝖨𝗌𝗅𝖺𝗆" : msg = threadData.customJoin;
 			msg = msg
 			.replace(/\{uName}/g, nameArray.join(', '))
 			.replace(/\{type}/g, (memLength.length > 1) ?  'you' : 'Friend')
@@ -48,10 +48,10 @@ memLength.sort((a, b) => a - b);
 			.replace(/\{threadName}/g, threadName);			
 
       var link = [
-"https://i.imgur.com/BRHFOY0.jpg",
-"https://i.imgur.com/BRHFOY0.jpg",
-"https://i.imgur.com/BRHFOY0.jpg",
-"https://i.imgur.com/BRHFOY0.jpg",
+"https://imgur.com/a/BFWmo8C",
+"https://imgur.com/a/BFWmo8C",
+"https://imgur.com/a/BFWmo8C",
+"https://imgur.com/a/BFWmo8C",
       ];
 				var callback = () => api.sendMessage({ body: msg, attachment: fs.createReadStream(__dirname + "/cache/leiamnashJ.jpg"), mentions }, event.threadID, () => fs.unlinkSync(__dirname + "/cache/leiamnashJ.jpg"));
     return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname + "/cache/leiamnashJ.jpg")).on("close", () => callback());       

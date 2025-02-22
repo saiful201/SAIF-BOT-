@@ -1,123 +1,124 @@
-  module.exports.config = {
-  name: "music",
-  version: "1.0.5",
-  hasPermssion: 0,
-  credits: "Mirai Team",
-  description: "Play music via YouTube link, SoundCloud or search keyword",
-  commandCategory: "media",
-  usages: "[link or content need search]",
-  cooldowns: 10,
-  dependencies: {
-    "ytdl-core": "",
-    "simple-youtube-api": "",
-    "soundcloud-downloader": "",
-    "fs-extra": "",
-    "axios": ""
+const fetch = require("node-fetch");
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+const ytSearch = require("yt-search");
+const https = require("https");
+
+module.exports = {
+  config: {
+    name: "music",
+    version: "1.0.3",
+    hasPermssion: 0,
+    credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
+    description: "Download YouTube song from keyword search and link",
+    commandCategory: "Media",
+    usages: "[songName] [type]",
+    cooldowns: 5,
+    dependencies: {
+      "node-fetch": "",
+      "yt-search": "",
+    },
   },
-  envConfig: {
-    "YOUTUBE_API": "AIzaSyBY0vH90jLBKwqB0tDBc9FUQLh0mbNxDvo",
-    "SOUNDCLOUD_API": "M4TSyS6eV0AcMynXkA3qQASGcOFQTWub"
-  }
-};
 
-module.exports.handleReply = async function({ api, event, handleReply }) {
-  const ytdl = global.nodemodule["ytdl-core"];
-  const { createReadStream, createWriteStream, unlinkSync, statSync } = global.nodemodule["fs-extra"];
-  ytdl.getInfo(handleReply.link[event.body - 1]).then(res => {
-  let body = res.videoDetails.title;
-  api.sendMessage(`Processing audio !\n◆━━━━━━━━━━━━━◆\n${body}\n◆━━━━━━━━━━━━━◆\nPlease Wait !`, event.threadID, (err, info) =>
-  setTimeout(() => {api.unsendMessage(info.messageID) } , 10000));
-    });
-  try {
-    ytdl.getInfo(handleReply.link[event.body - 1]).then(res => {
-    let body = res.videoDetails.title;
-    ytdl(handleReply.link[event.body - 1])
-      .pipe(createWriteStream(__dirname + `/cache/${handleReply.link[event.body - 1]}.m4a`))
-      .on("close", () => {
-        if (statSync(__dirname + `/cache/${handleReply.link[event.body - 1]}.m4a`).size > 26214400) return api.sendMessage('The file could not be sent because it is larger than 25MB.', event.threadID, () => unlinkSync(__dirname + `/cache/${handleReply.link[event.body - 1]}.m4a`), event.messageID);
-        else return api.sendMessage({body : `${body}`, attachment: createReadStream(__dirname + `/cache/${handleReply.link[event.body - 1]}.m4a`)}, event.threadID, () => unlinkSync(__dirname + `/cache/${handleReply.link[event.body - 1]}.m4a`), event.messageID)
-      })
-      .on("error", (error) => api.sendMessage(`There was a problem while processing the request, error: \n${error}`, event.threadID, event.messageID));
-    });
+  run: async function ({ api, event, args }) {
+    let songName, type;
+
+    if (
+      args.length > 1 &&
+      (args[args.length - 1] === "audio" || args[args.length - 1] === "video")
+    ) {
+      type = args.pop();
+      songName = args.join(" ");
+    } else {
+      songName = args.join(" ");
+      type = "audio";
     }
-  catch {
-    api.sendMessage("Your request could not be processed!", event.threadID, event.messageID);
-  }
-  return api.unsendMessage(handleReply.messageID);
-}
 
-module.exports.run = async function({ api, event, args }) {
-  const ytdl = global.nodemodule["ytdl-core"];
-  const YouTubeAPI = global.nodemodule["simple-youtube-api"];
-  const scdl = global.nodemodule["soundcloud-downloader"].default;
-  const axios = global.nodemodule["axios"];
-  const { createReadStream, createWriteStream, unlinkSync, statSync } = global.nodemodule["fs-extra"];
+    const processingMessage = await api.sendMessage(
+      "✅ Processing your request. Please wait...",
+      event.threadID,
+      null,
+      event.messageID
+    );
 
-  const youtube = new YouTubeAPI(global.configModule[this.config.name].YOUTUBE_API);
-  const keyapi = global.configModule[this.config.name].YOUTUBE_API
-  if (args.length == 0 || !args) return api.sendMessage('Search cannot be left blank!', event.threadID, event.messageID);
-  const keywordSearch = args.join(" ");
-  const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
-  const scRegex = /^https?:\/\/(soundcloud\.com)\/(.*)$/;
-  const urlValid = videoPattern.test(args[0]);
-
-  if (urlValid) {
     try {
-      ytdl.getInfo(args[0]).then(res => {
-      let body = res.videoDetails.title;
-      var id = args[0].split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-            (id[2] !== undefined) ? id = id[2].split(/[^0-9a-z_\-]/i)[0] : id = id[0];
-      ytdl(args[0])
-        .pipe(createWriteStream(__dirname + `/cache/${id}.m4a`))
-        .on("close", () => {
-          if (statSync(__dirname + `/cache/${id}.m4a`).size > 26214400) return api.sendMessage('The file could not be sent because it is larger than 25MB.', event.threadID, () => unlinkSync(__dirname + `/cache/${id}.m4a`), event.messageID);
-          else return api.sendMessage({body : `${body}`, attachment: createReadStream(__dirname + `/cache/${id}.m4a`)}, event.threadID, () => unlinkSync(__dirname + `/cache/${id}.m4a`) , event.messageID)
-        })
-        .on("error", (error) => api.sendMessage(`There was a problem while processing the request, error: \n${error}`, event.threadID, event.messageID));
+      // Search for the song on YouTube
+      const searchResults = await ytSearch(songName);
+      if (!searchResults || !searchResults.videos.length) {
+        throw new Error("No results found for your search query.");
+      }
+
+      // Get the top result from the search
+      const topResult = searchResults.videos[0];
+      const videoId = topResult.videoId;
+
+      // Construct API URL for downloading the top result
+      const apiKey = "priyansh-here";
+      const apiUrl = `https://priyansh-ai.onrender.com/youtube?id=${videoId}&type=${type}&apikey=${apiKey}`;
+
+      api.setMessageReaction("⌛", event.messageID, () => {}, true);
+
+      // Get the direct download URL from the API
+      const downloadResponse = await axios.get(apiUrl);
+      const downloadUrl = downloadResponse.data.downloadUrl;
+
+      // Set the filename based on the song title and type
+      const safeTitle = topResult.title.replace(/[^a-zA-Z0-9 \-_]/g, ""); // Clean the title
+      const filename = `${safeTitle}.${type === "audio" ? "mp3" : "mp4"}`;
+      const downloadDir = path.join(__dirname, "cache");
+      const downloadPath = path.join(downloadDir, filename);
+
+      // Ensure the directory exists
+      if (!fs.existsSync(downloadDir)) {
+        fs.mkdirSync(downloadDir, { recursive: true });
+      }
+
+      // Download the file and save locally
+      const file = fs.createWriteStream(downloadPath);
+
+      await new Promise((resolve, reject) => {
+        https.get(downloadUrl, (response) => {
+          if (response.statusCode === 200) {
+            response.pipe(file);
+            file.on("finish", () => {
+              file.close(resolve);
+            });
+          } else {
+            reject(
+              new Error(`Failed to download file. Status code: ${response.statusCode}`)
+            );
+          }
+        }).on("error", (error) => {
+          fs.unlinkSync(downloadPath);
+          reject(new Error(`Error downloading file: ${error.message}`));
+        });
       });
-      }
-    catch (e) {
-      console.log(e);
-      api.sendMessage("Your request could not be processed", event.threadID, event.messageID);
-    }
 
-  }
-  else if (scRegex.test(args[0])) {
-    let body;
-    try {
-      var songInfo = await scdl.getInfo(args[0], global.configModule[this.config.name].SOUNDCLOUD_API);
-      var timePlay = Math.ceil(songInfo.duration / 1000);
-      body = `Tiêu đề: ${songInfo.title} | ${(timePlay - (timePlay %= 60)) / 60 + (9 < timePlay ? ':' : ':0') + timePlay}]`;
+      api.setMessageReaction("✅", event.messageID, () => {}, true);
+
+      // Send the downloaded file to the user
+      await api.sendMessage(
+        {
+          attachment: fs.createReadStream(downloadPath),
+          body: `🖤 Title: ${topResult.title}\n\n Here is your ${
+            type === "audio" ? "audio" : "video"
+          } 🎧:`,
+        },
+        event.threadID,
+        () => {
+          fs.unlinkSync(downloadPath); // Cleanup after sending
+          api.unsendMessage(processingMessage.messageID);
+        },
+        event.messageID
+      );
+    } catch (error) {
+      console.error(`Failed to download and send song: ${error.message}`);
+      api.sendMessage(
+        `Failed to download song: ${error.message}`,
+        event.threadID,
+        event.messageID
+      );
     }
-    catch (error) {
-      if (error.statusCode == "404") return api.sendMessage("Your song cannot be found via the above link ;w;", event.threadID, event.messageID);
-api.sendMessage("The request could not be processed due to an error: " + error.message, event.threadID, event.messageID);
-    }
-    try {
-      await scdl.downloadFormat(args[0], scdl.FORMATS.OPUS, global.configModule[this.config.name].SOUNDCLOUD_API ? global.configModule[this.config.name].SOUNDCLOUD_API : undefined).then(songs => songs.pipe(createWriteStream(__dirname + "/cache/music.mp3")).on("close", () => api.sendMessage({ body, attachment: createReadStream(__dirname + "/cache/music.mp3" )}, event.threadID, () => unlinkSync(__dirname + "/cache/music.mp3"), event.messageID)));
-    }
-    catch (error) {
-      await scdl.downloadFormat(args[0], scdl.FORMATS.MP3, global.configModule[this.config.name].SOUNDCLOUD_API ? global.configModule[this.config.name].SOUNDCLOUD_API : undefined).then(songs => songs.pipe(createWriteStream(__dirname + "/cache/music.mp3")).on("close", () => api.sendMessage({ body, attachment: createReadStream(__dirname + "/cache/music.mp3" )}, event.threadID, () => unlinkSync(__dirname + "/cache/music.mp3"), event.messageID)));
-    }
-  }
-  else {
-    try {
-      var link = [], msg = "", num = 0;
-      var results = await youtube.searchVideos(keywordSearch, 5);
-      for (let value of results) {
-        if (typeof value.id == 'undefined') return;
-        link.push(value.id);
-        let datab = (await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${value.id}&key=${keyapi}`)).data;
-        let gettime = datab.items[0].contentDetails.duration;
-        let time = (gettime.slice(2));
-        let datac = (await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${value.id}&key=${keyapi}`)).data;
-        let channel = datac.items[0].snippet.channelTitle;
-        msg += (`${num+=1}. ${value.title}\nTime: ${time}\nChannel: ${channel}\n◆━━━━━━━━━━━━━◆\n`);
-      }
-      return api.sendMessage(`There are ${link.length} results matching your search term: \n${msg}\nPlease reply(feedback) choose one of the above searches\nMaximum Song Time 10H!`, event.threadID,(error, info) => global.client.handleReply.push({ name: this.config.name, messageID: info.messageID, author: event.senderID, link }), event.messageID);
-    }
-    catch (error) {
-      api.sendMessage("The request could not be processed due to an error: " + error.message, event.threadID, event.messageID);
-    }
-  }
-}
+  },
+};

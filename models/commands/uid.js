@@ -1,11 +1,17 @@
 module.exports.config = {
 	name: "uid",
-	version: "1.0.0",
+	version: "1.0.1", 
 	hasPermssion: 0,
-	credits: "Abdylla",
-	description: "Get your user ID",
-	commandCategory: "without prefix",
-	cooldowns: 5
+	credits: "Abdula Rahaman",
+	description: "GET YOUR USER ID",
+	commandCategory: "uid",
+	cooldowns: 1,
+	dependencies: 
+	{
+    "request":"",
+    "fs-extra":"",
+    "axios":""
+  }
 };
 
 module.exports.run = async function({ event, api, args, client, Currencies, Users, utils, __GLOBAL, reminder }) {

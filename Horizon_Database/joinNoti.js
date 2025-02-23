@@ -45,7 +45,7 @@ module.exports.run = async function({ api, event }) {
 
 ◑আমার বস সাইফুল ইসলাম কে এড দিতে প্রথমে টাইপ করুন /add তারপর একটা স্পেস দিয়ে বস এর 𝒖𝒊'𝒅 100011152309303 দিন ☺️
 
-◑ ফেসবুক লিংক ☞ https://www.facebook.com/saifulislam713?mibextid=ZbWKwL
+◑ ফেসবুক লিংক ☞ https://www.facebook.com/share/18gGhJ9Lz7/
 
 🐰\n\nUse ${global.config.PREFIX}help to see commands.\n\nexample :\n${global.config.PREFIX}mark (text)\n${global.config.PREFIX}lexi (text)\n${global.config.PREFIX}trump (text)\n${global.config.PREFIX}info 
 `, attachment: fs.createReadStream(__dirname + "/cache/joinmp4/saiful.mp4")} ,threadID));

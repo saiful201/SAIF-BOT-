@@ -13,8 +13,8 @@ module.exports.run = async function({ api, event }) {
 	const request = require("request");
 	const { threadID } = event;
 	if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
-		api.changeNickname(`𝗕𝗢𝗧 ${global.config.BOTNAME} 【 ${global.config.PREFIX} 】`, threadID, api.getCurrentUserID());
-		return api.sendMessage(`${global.config.BOTNAME} 𝘀𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱\n𝗻𝗼𝘄 𝘆𝗼𝘂𝗿 𝗴𝗿𝗼𝘂𝗽 𝗰𝗮𝗻 𝘂𝘀𝗲 𝗯𝗼𝘁\n\n𝗽𝗿𝗲𝗳𝗶𝘅: ${global.config.PREFIX} \n ${global.config.PREFIX} HELP FOR LIST COMMAND`, threadID);
+		api.changeNickname(` ${global.config.BOTNAME} 【 ${global.config.PREFIX} 】`, threadID, api.getCurrentUserID());
+		return api.sendMessage(`${global.config.BOTNAME} \n\n\n𝗽𝗿𝗲𝗳𝗶𝘅: ${global.config.PREFIX} \n ${global.config.PREFIX} `, threadID);
 	}
 	else {
 		try {

@@ -1,14 +1,12 @@
 module.exports.config = {
-	name:"uptime",
-	version: "1.0.0",
-	hasPermssion: 0,
-	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
-	description: "Random anime image api - uptime",
-	commandCategory: "Banner",
-	cooldowns: 3,
-  dependencies: {
-		"pidusage": ""
-	}
+    name: "upt",
+    version: "1.0.0",
+    hasPermssion: 2,
+    credits: "Kanichi",
+    description: "uptime",
+    commandCategory: "banner",
+    usages: "uptime",
+    cooldowns: 10,
 };
 function byte2mb(bytes) {
 	const units = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];

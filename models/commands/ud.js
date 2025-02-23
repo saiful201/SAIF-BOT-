@@ -1,5 +1,5 @@
 module.exports.config = {
-	name: "uid",
+	name: "ud",
 	version: "1.0.1", 
 	hasPermssion: 0,
 	credits: "Abdula Rahaman",

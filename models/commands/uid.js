@@ -2,9 +2,9 @@ module.exports.config = {
 	name: "uid",
 	version: "1.0.0",
 	hasPermssion: 0,
-	credits: "Abdylla",
-	description: "Get your user ID",
-	commandCategory: "without prefix",
+	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
+	description: "Get User ID.",
+	commandCategory: "Tools",
 	cooldowns: 5
 };
 

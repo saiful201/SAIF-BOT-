@@ -1,12 +1,18 @@
+/** I am doing this coding with a lot of difficulty, please don't post it yourself¯\_(ツ)_/¯ **/
 module.exports.config = {
   name: "pp",
   version: "1.0.0",
-  permission: 0,
-  credits: "Nayan",
-  prefix: false,
-  description: "get user id.",
-  category: "without prefix",
-  cooldowns: 5
+  hasPermssion:"admin",
+  credits: "RAHAT",
+  description: "...",
+  commandCategory: "Hình ảnh",
+  usages: "...",
+  cooldowns: 0,
+  dependencies: {
+    "request":"",
+    "fs-extra":"",
+    "axios":""
+  }
 };
 
 module.exports.run = async function({ event, api, args, client, Currencies, Users, utils, __GLOBAL, reminder }) {

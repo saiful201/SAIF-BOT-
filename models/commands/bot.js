@@ -1,20 +1,14 @@
-const axios = require('axios');
-const fs = require('fs'); 
-const path = require('path');
-
-module.exports = {
-  config: {
-    name: "bot",
-    version: "1.0.0",
-    permission: 0,
-    credits: "nayan",
-    description: "talk with bot",
-    prefix: 'awto',
-    category: "talk",
-    usages: "hi",
-    cooldowns: 5,
-  },
-
+const fs = require("fs");
+module.exports.config = {
+	name: "bollfouofo",
+    version: "1.0.1",
+	hasPermssion: 0,
+	credits: "Joshua Sy", 
+	description: "no prefix",
+	commandCategory: "No command marks needed",
+	usages: "...",
+    cooldowns: 1, 
+};
   handleReply: async function ({ api, event }) {
     try {
 

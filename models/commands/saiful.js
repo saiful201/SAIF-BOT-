@@ -7,7 +7,7 @@ const https = require("https");
 
 module.exports = {
   config: {
-    name: "music",
+    name: "saiful",
     version: "1.0.3",
     hasPermssion: 0,
     credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",

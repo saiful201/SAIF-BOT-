@@ -69,7 +69,7 @@ module.exports.run = async function({ api, event }) {
       }
       memLength.sort((a, b) => a - b);
 
-      (typeof threadData.customJoin == "undefined") ? msg = "💐 WELCOME\n{name}\nআপনাকে আমাদের আড্ডা ঘর  Group এ Join হওয়ার জন্য ধন্যবাদ। আপনি আমাদের GROUP এর\n {soThanhVien} Number member আসা করি আপনি আমাদের সকল রুলস মেনে চলবেন।🖤💐\n[𝑮𝑹𝑶𝑼𝑷 𝑹𝑼𝑳𝑬𝑺]\n১. গ্ৰুপে কেউ ১৮+ কিছু দিবেন না।\n২. আমাদের গ্ৰুপে অনেক Senior ভাই ও আপু আছে, সবাইকে সম্মান দিবেন।\n৩. অযথা BOT Command দিয়ে বিরক্ত করবেন না।\n𝙳𝚎𝚜𝚒𝚐𝚗𝚎𝚍 𝙱𝚢; sᴀɪғᴜʟ ɪsʟᴀᴍ" : msg = threadData.customJoin;
+      (typeof threadData.customJoin == "undefined") ? msg = "\n{name}\nআপনাকে আমাদের আড্ডা ঘর  Group এ Join হওয়ার জন্য ধন্যবাদ। আপনি আমাদের GROUP এর\n {soThanhVien} \n[𝑮𝑹𝑶𝑼𝑷 𝑹𝑼𝑳𝑬𝑺]\n১. গ্ৰুপে কেউ ১৮+ কিছু দিবেন না।\n২. আমাদের গ্ৰুপে অনেক Senior ভাই ও আপু আছে, সবাইকে সম্মান দিবেন।\n৩. অযথা BOT Command দিয়ে বিরক্ত করবেন না।\n𝙳𝚎𝚜𝚒𝚐𝚗𝚎𝚍 𝙱𝚢; sᴀɪғᴜʟ ɪsʟᴀᴍ" : msg = threadData.customJoin;
       msg = msg
       .replace(/\{name}/g, nameArray.join(', '))
       .replace(/\{type}/g, (memLength.length > 1) ?  'You' : 'Friend')
@@ -78,11 +78,11 @@ module.exports.run = async function({ api, event }) {
 
       if (existsSync(path)) mkdirSync(path, { recursive: true });
 
-      const randomPath = readdirSync(join(__dirname, "cache", "", "join.jpg"));
+      const randomPath = readdirSync(join(__dirname, "", "", ""));
 
       if (existsSync(pathGif)) formPush = { body: msg, attachment: createReadStream(pathGif), mentions }
       else if (randomPath.length != 0) {
-        const pathRandom = join(__dirname, "cache", "", "join.jpg", `${randomPath[Math.floor(Math.random() * randomPath.length)]}`);
+        const pathRandom = join(__dirname, "", "", "", `${randomPath[Math.floor(Math.random() * randomPath.length)]}`);
         formPush = { body: msg, attachment: createReadStream(pathRandom), mentions }
       }
       else formPush = { body: msg, mentions }
